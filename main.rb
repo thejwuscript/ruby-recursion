@@ -39,3 +39,15 @@ def fib(n)
     fib(n-1) + fib(n-2)
   end
 end
+
+# Define a recursive function that flattens an array.
+# The method should convert [[1, 2], [3, 4]] to [1, 2, 3, 4] and
+# [[1, [8, 9]], [3, 4]] to [1, 8, 9, 3, 4].
+
+def recursive_flatten(array)
+  if array.flatten == array
+    array
+  else
+    recursive_flatten(array.flatten!(1))
+  end
+end
