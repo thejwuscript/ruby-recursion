@@ -12,3 +12,16 @@ def palindrome?(string)
     palindrome?(string)
   end
 end
+
+# Define a recursive function that takes an argument n and prints
+# "n bottles of beer on the wall", "(n-1) bottles of beer on the wall",
+# ..., "no more bottles of beer on the wall".
+
+def countdown(n)
+  if n == 0
+    puts "no more bottles of beer on the wall"
+  else
+    puts "#{n} bottles of beer on the wall"
+    countdown(n-1)
+  end
+end
