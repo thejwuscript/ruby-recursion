@@ -51,3 +51,30 @@ def recursive_flatten(array)
     recursive_flatten(array.flatten!(1))
   end
 end
+
+# Use the roman_mapping hash to define a recursive method that converts an integer
+# to a Roman numeral.
+roman_mapping = {
+  1000 => 'M',
+  900 => 'CM',
+  500 => 'D',
+  400 => 'CD',
+  100 => 'C',
+  90 => 'XC',
+  50 => 'L',
+  40 => 'XL',
+  10 => 'X',
+  9 => 'IX',
+  5 => 'V',
+  4 => 'IV',
+  1 => 'I'
+}
+def integer_to_roman(roman_mapping, integer, roman = '')
+  if roman_mapping.keys.select { |k| integer / k >= 1 }[0].nil?
+    roman
+  else
+    key = roman_mapping.keys.select { |k| integer / k >= 1 }[0]
+    roman << roman_mapping[key]
+    integer_to_roman(roman_mapping, integer - key, roman)
+  end
+end
