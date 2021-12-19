@@ -78,3 +78,34 @@ def integer_to_roman(roman_mapping, integer, roman = '')
     integer_to_roman(roman_mapping, integer - key, roman)
   end
 end
+
+# Use the roman_mapping2 hash to define a recursive method that converts
+# a Roman numeral to an integer.
+
+roman_mapping2 = {
+  'M' => 1000,
+  'CM' => 900,
+  'D' => 500,
+  'CD' => 400,
+  'C' => 100,
+  'XC' => 90,
+  'L' => 50,
+  'XL' => 40,
+  'X' => 10,
+  'IX' => 9,
+  'V' => 5,
+  'IV' => 4,
+  'I' => 1
+}
+
+def roman_to_integer(roman, roman_mapping2, result = 0)
+  if roman.nil?
+    result
+  elsif roman_mapping2[roman[0, 2]].nil?
+    result += roman_mapping2[roman[0]]
+    roman_to_integer(roman.slice!(1..-1), roman_mapping2, result)
+  else
+    result += roman_mapping2[roman[0, 2]]
+    roman_to_integer(roman.slice!(2..-1), roman_mapping2, result)
+  end
+end
