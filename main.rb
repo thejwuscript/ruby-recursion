@@ -137,3 +137,19 @@ def fibs_rec(num)
 
   fibs_rec(num - 1) << fibs_rec(num - 1).last(2).sum
 end
+
+# Build a method #merge_sort that takes in an array and returns a sorted array,
+# using a recursive merge sort methodology.
+
+def merge_sort(array, sorted = [])
+  return array if array.size == 1
+
+  left = merge_sort(array.slice!(0, array.size / 2))
+  right = merge_sort(array)
+  loop do
+    sorted << (left.first > right.first ? right.shift : left.shift)
+    break sorted += right.slice!(0..-1) if left.empty?
+    break sorted += left.slice!(0..-1) if right.empty?
+  end
+  sorted
+end
