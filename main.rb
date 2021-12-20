@@ -109,3 +109,31 @@ def roman_to_integer(roman, roman_mapping2, result = 0)
     roman_to_integer(roman.slice!(2..-1), roman_mapping2, result)
   end
 end
+
+# Using iteration, write a method #fibs which takes a number and returns an array
+# containing that many numbers from the fibonacci sequence.
+
+def fibs(num)
+  array = []
+  i,a,b = 0
+  until array.length == num do
+    array << 0 if array.empty?
+    break if array.length == num
+    array[1] = 1
+    break if array.length == num
+    a,b = array[i], array[i+1]
+    array << a + b
+    i += 1
+  end
+  array
+end
+
+# Now write another method #fibs_rec which solves the same problem recursively
+# (i.e., return an array containing that many numbers from the fibonacci sequence).
+
+def fibs_rec(num)
+  return [0] if num == 1
+  return [0, 1] if num == 2
+
+  fibs_rec(num - 1) << fibs_rec(num - 1).last(2).sum
+end
